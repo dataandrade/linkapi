@@ -1,3 +1,21 @@
+## GitHub Configuration
+
+- **Main branch**: main
+- **Dev branch**: dev
+
+This project has 2 environments configurated:
+- Dev 
+  - Where all secrets are setted for Database connection info.
+- Prod
+  - Where all secrets are setted for Database connection info.
+
+
+
+
+
+
+---
+
 # Teste Técnico - Back-end (Rodrigo Andrade)
 ## General instructions
 Leia atentamente as instruções abaixo para a realização do teste proposto.
