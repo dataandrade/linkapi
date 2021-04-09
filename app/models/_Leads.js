@@ -1,6 +1,6 @@
 /* Importação de dependencias */
 const Mongoose = require("mongoose");
-const UniqueValidator = require("mongoose-unique-validator");
+//const UniqueValidator = require("mongoose-unique-validator");
 
 // /* Importação de Plugins */
 // const SenhaPlugin = require("../plugins/Senha.plugin");

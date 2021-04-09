@@ -1,16 +1,22 @@
+
+
+## How to run this project
+#### Requirements
+
+---
+
 ## GitHub Configuration
 
-- **Main branch**: main
-- **Dev branch**: dev
+This project use two 
+- **Main branch**: `main`
+- **Dev branch**: `dev`
 
 This project has 2 environments configurated:
-- Dev 
-  - Where all secrets are setted for Database connection info.
-- Prod
-  - Where all secrets are setted for Database connection info.
+- Dev ~ `dev branch` 
+- Prod ~ `main branch`
 
 
-
+![Project Environments for GitHub](env_github_config.jpg "Project Environments for GitHub")
 
 
 

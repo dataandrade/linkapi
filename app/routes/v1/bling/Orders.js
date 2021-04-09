@@ -5,11 +5,10 @@ const router = require("express").Router();
 // const SchemaValidator = require("../../../middlewares/SchemaValidation");
 
 /* Importação Controllers */
-const LeadsController = require("../../../controllers/leads/Leads");
+const OrdersController = require("../../../controllers/bling/Orders");
 
-/*  */
 router
-  .route("/leads")
-  .post(LeadsController.create);
+  .route("/bling/orders")
+  .post(OrdersController.create)
 
 module.exports = router;
