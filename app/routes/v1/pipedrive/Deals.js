@@ -9,6 +9,6 @@ const DealsController = require("../../../controllers/pipedrive/Deals");
 
 router
   .route("/deals")
-  .get(DealsController.getPipedriveDeals)
+  .patch(DealsController.patchPipedriveBlingDeals);
 
 module.exports = router;

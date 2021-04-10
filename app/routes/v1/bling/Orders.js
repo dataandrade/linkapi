@@ -8,7 +8,7 @@ const router = require("express").Router();
 const OrdersController = require("../../../controllers/bling/Orders");
 
 router
-  .route("/bling/orders")
-  .post(OrdersController.create)
+  .route("/orders")
+  .patch(OrdersController.create)
 
 module.exports = router;

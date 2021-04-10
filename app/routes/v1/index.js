@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
-router.use("/", require("./pipedrive"));
-router.use("/", require("./bling"));
+router.use("/pipedrive", require("./pipedrive"));
+router.use("/bling", require("./bling"));
 
 
 module.exports = router;

@@ -9,15 +9,22 @@
 
 This project use two 
 - **Main branch**: `main`
+    - Production type env
+- **Sandbox branch**: `sandbox`
+    - Sandbox env for testing before deploying to the main branch
 - **Dev branch**: `dev`
+    - Latest development branch. 
 
-This project has 2 environments configurated:
-- Dev ~ `dev branch` 
-- Prod ~ `main branch`
+Flow of deployment
 
+- Updating the `dev` branch:
+    `feature/my-new-feature` -> `dev`
 
-![Project Environments for GitHub](env_github_config.jpg "Project Environments for GitHub")
+- Updating the `sandbox` branch:
+    `dev` -> `sandbox`
 
+- Updating the `main` branch:
+`dev` -> `main`
 
 
 ---
