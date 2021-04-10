@@ -1,6 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+
+// moment config
+const moment = require("moment");
+require("moment/min/locales");
+moment.defineLocale('pt-BR', {});
+
 const app = express();
 
 app.use(cors());

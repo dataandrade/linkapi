@@ -7,8 +7,8 @@ const router = require("express").Router();
 /* Importação Controllers */
 const OrdersController = require("../../../controllers/bling/Orders");
 
-router
-  .route("/orders")
-  .patch(OrdersController.create)
+router 
+  .route("/orders/report")
+  .patch(OrdersController.patchDailyBlingReport)
 
 module.exports = router;

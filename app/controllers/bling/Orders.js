@@ -1,11 +1,9 @@
-/* Importação de dependencias */
-const Mongoose = require("mongoose");
-
 const BlingService = require("../../services/Bling");
 
-exports.create = async function(req, res, next) {
+exports.patchDailyBlingReport = async function(req, res, next){
+    // chamar servico principal deste report. Que eh tambem utilizado pela Cron.
+    const _daily = await BlingService.createDailyBlingReport();
 
-  const orders = await BlingService.createBlingOrders({});
-  return res.status(201)
-          .send({...orders});
+    return res.status(200)
+          .send({..._daily});
 };

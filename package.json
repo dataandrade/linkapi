@@ -17,7 +17,8 @@
     "lodash": "4.17.11",
     "node-cron": "3.0.0",
     "node-fetch": "2.6.1",
-    "js2xmlparser": "4.0.1"
+    "js2xmlparser": "4.0.1",
+    "moment": "2.29.1"
   },
   "devDependencies": {
     "nodemon": "1.18.10",
