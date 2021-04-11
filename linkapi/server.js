@@ -9,11 +9,11 @@ app.use(json());
 
 require("./database");
 
-require("./app/models");
+require("./models");
 
-app.use(require("./app/routes"));
+app.use(require("./routes"));
 
-const CronJobs = require("./app/jobs/Cron");
+const CronJobs = require("./jobs/Cron");
 
 CronJobs.PipedriveCron.start();
 CronJobs.BlingCron.start();

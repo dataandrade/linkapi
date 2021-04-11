@@ -1,0 +1,42 @@
+{
+  "name": "linkapi",
+  "version": "0.0.1",
+  "description": "LinkApi - Integration between Pipedrive and Bling.",
+  "main": "server.js",
+  "keywords": [
+    "nodejs",
+    "api",
+    "express",
+    "docker",
+    "compose",
+    "mongodb"
+  ],
+  "scripts": {
+    "install:only:setup": "npm run install:only:prod & npm run install:only:dev",
+    "install:only:prod": "npm install --only=prod",
+    "install:only:dev": "npm install --only=dev",
+    "start": "node server.js"
+  },
+  "author": "Rodrigo Andrade <datarodrigoandrade@gmail.com>",
+  "dependencies": {
+    "mongoose": "5.4.15",
+    "express": "4.16.4",
+    "body-parser": "1.18.3",
+    "cors": "2.8.5",
+    "cron": "1.8.2",
+    "node-fetch": "2.6.1",
+    "js2xmlparser": "4.0.1",
+    "moment": "2.29.1",
+    "module-alias": "2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "1.18.10",
+    "dotenv": "8.2.0"
+  },
+  "_moduleAliases": {
+    "@constants": "./app/constants",
+    "@models": "./app/models",
+    "@services": "./app/services",
+    "@controllers": "./app/controllers"
+  }
+}
