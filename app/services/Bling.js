@@ -1,7 +1,7 @@
 // packages
 const fetch = require("node-fetch");
 const Mongoose = require("mongoose");
-
+ 
 // models
 const OrderModel = Mongoose.model("Orders");
 
@@ -37,11 +37,36 @@ const BlingService = {
         
     },
 
+    async getDailyBlingReport(params){
+
+        const filter = {};
+
+        if(params.date)
+            filter.date = { $eq: params.date };        
+        
+        return await OrderModel
+                                .find(filter, {}, {
+                                    limit: 10,
+                                    skip: params.offset ? parseInt(params.offset) : 0,
+                                    sort: params.order || "-date"
+                                })                                
+                                .then((reports) => {
+                                    return reports
+                                                .map((report) => {
+                                                    return {
+                                                        date: report.date,
+                                                        totalAmount: report.totalAmount,
+                                                        orders: report.orders
+                                                    }   
+                                                });
+                                });
+
+    },
+
     async createDailyBlingReport(){
         const yesterday = DateUtils.getYesterdayBrazilianFormat("DD/MM/YYYY");
         return await this.getBlingOrdersByDate(yesterday)
                             .then((checkOrdersExistence) => {
-                                console.log(checkOrdersExistence);
                                 if(checkOrdersExistence.retorno && checkOrdersExistence.retorno.erros)
                                     return {
                                         pedidos: []

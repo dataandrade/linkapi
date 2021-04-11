@@ -9,7 +9,7 @@ const BlingUtils = {
         xml = xml.replace("</pedido>", "");
         xml = xml.replace(/>\s*/g, '>');
         xml = xml.replace(/\s*</g, '<');
-        console.log(xml);
+        
         xml = encodeURI(xml);
 
         

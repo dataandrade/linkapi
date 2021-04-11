@@ -3,7 +3,7 @@ const Mongoose = require("mongoose");
 
 const OrdersSchema = new Mongoose.Schema({
   date: {
-    type: Date,
+    type: String,
     require: [true, "require data information"],
     index: true,
     unique: true
@@ -14,5 +14,13 @@ const OrdersSchema = new Mongoose.Schema({
   },
   orders: [Object]
 });
+
+OrdersSchema.methods.formatedJSON = function(){
+  return {
+    date: this.date,
+    totalAmount: this.totalAmount,
+    orders: this.orders
+  };
+};
 
 Mongoose.model("Orders", OrdersSchema);

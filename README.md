@@ -32,7 +32,18 @@ PIPEDRIVE_PAGINATION_LIMIT=5
 PIPEDRIVE_CUSTOM_FILTER_ID=YOUR_CUSTOM_FILTER_ID
 ```
 
+## Calling endpoint with reports:
+[GET] `http://localhost:3000/v1/bling/orders/report`
 
+this endpoint accepts the following filters:
+
+- date (`default: the last 10 items from collection. Note: the order filter will impact in this results`)
+- offset (`default: 0`)
+- order (`default: -date`)
+
+Example of request:
+
+[GET] `http://localhost:3000/v1/bling/orders/report?offset=0&order=-date`
 
 ---
 
@@ -46,8 +57,7 @@ This project use two
 - **Dev branch**: `dev`
     - Latest development branch. 
 
-Flow of deployment
-
+Flow of deployment:
 - Updating the `dev` branch:
     `feature/my-new-feature` -> `dev`
 
