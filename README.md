@@ -1,7 +1,38 @@
 
 
+
+
 ## How to run this project
 #### Requirements
+1 - We'll need to create a custom filter inside pipedrive with the following configuration:
+
+![Pipedrive filter configuration](pipedrive_creation_filter_deals_won_yesterday.jpg "Pipedrive filter configuration")
+
+- Now, with this custom filter created, we'll need to get the filter's id.
+    - Got to https://developers.pipedrive.com/docs/api/v1/#!/Filters/getFilters with your `API_KEY`, and run the endpoint selecting the type `deals`.
+
+you will see something like this:
+![Pipedrive filter](json_filter_deals_won_yesterday.jpg "Pipedrive filter")
+
+with your custom filter id at hand, you will need to set him at your `.env` config file.
+
+Now, our CronJob for getting deals with status `won` will only bring `today -1day` (yesterday).
+
+
+### Create a `.env` file in your root directory:
+
+```
+DB_HOST=URL_MONGODB_OR_MONGODB_IP
+PORT=3000
+BLING_API_KEY=YOUR_BLING_API_KEY
+BLING_BASE_URL=https://bling.com.br/Api/v2
+PIPEDRIVE_BASE_URL=https://{{YOUR_COMPANY_URL}}-sandbox.pipedrive.com
+PIPEDRIVE_API_KEY=f183c575716e0329a5ba5aa75afbaf23077fc337
+PIPEDRIVE_PAGINATION_LIMIT=5
+PIPEDRIVE_CUSTOM_FILTER_ID=YOUR_CUSTOM_FILTER_ID
+```
+
+
 
 ---
 

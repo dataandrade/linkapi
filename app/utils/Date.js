@@ -4,11 +4,11 @@ require("moment/min/locales");
 moment.locale("pt-BR");
 
 const DateUtils = {
-    formatBrazilianDateTime(date){
-        return moment(date).format();
+    getTodayBrazilianFormat(){
+        return moment().format();
     },
-    getBrazilianDateTime(format) {
-        return moment().format(format);
+    getYesterdayBrazilianFormat(format){
+        return moment(this.getTodayBrazilianFormat()).subtract('days', 1).format(format); 
     }
 };
 

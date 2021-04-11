@@ -1,17 +1,10 @@
-const CronJob = require("cron").CronJob;
+const Jobs = require("./Cron");
 
-const BlingJob = new CronJob(
-  "0 1 * * *",
-  function() {
-
-    
-    // this function doesnt return any value. (void)
-  },
-  null,
-  true,
-  "America/Sao_Paulo"
-);
-
-module.exports = {
-    BlingJob
+const BlingCron = {
+  start(){
+    Jobs.BlingCron.start();
+  }
 };
+
+module.exports = BlingCron;
+

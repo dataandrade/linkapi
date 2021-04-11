@@ -1,10 +1,13 @@
+const DateUtils = require("./Date");
+
 const PipedriveUtils = {
     BlingFormat(data){
         return data.map((deal) => {
             return {
+                data: DateUtils.getYesterdayBrazilianFormat("DD/MM/YYYY"),
                 cliente: {
                     nome: deal.person_name
-                },
+                },                
                 transporte: {
                     volumes: {
                         volume: [
@@ -27,7 +30,7 @@ const PipedriveUtils = {
                 parcelas: {
                     parcela: [
                         {
-                            data: new Date(),
+                            data: DateUtils.getYesterdayBrazilianFormat("DD/MM/YYYY"),
                             vlr: deal.value,
                             obs: deal.status
                         }
