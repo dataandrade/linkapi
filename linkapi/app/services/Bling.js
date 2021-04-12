@@ -65,7 +65,7 @@ const BlingService = {
 
     async createDailyBlingReport(){
         const yesterday = DateUtils.getYesterdayBrazilianFormat("DD/MM/YYYY");
-
+        console.log(yesterday);
         return await this.getBlingOrdersByDate(yesterday)
                             .then((checkOrdersExistence) => {
                                 if(checkOrdersExistence.retorno && checkOrdersExistence.retorno.erros)

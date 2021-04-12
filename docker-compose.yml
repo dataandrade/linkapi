@@ -8,6 +8,7 @@ services:
     depends_on: 
       - db
     environment:
+      - CONTAINER=yes
       - PORT=3002
       - BLING_API_KEY=e4bbb1db79e034b79843f61adebd713aa43144ca9abf79bdcb3638356e2f65303f5f8d32
       - BLING_BASE_URL=https://bling.com.br/Api/v2
