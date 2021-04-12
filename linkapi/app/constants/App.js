@@ -1,0 +1,26 @@
+// mongodb
+const MONGO_USERNAME = process.env.MONGO_USERNAME;
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
+const MONGO_DATABASE = process.env.MONGO_DATABASE;
+const MONGO_HOST = process.env.MONGO_HOST;
+const DB_HOST = process.env.DB_HOST ? process.env.DB_HOST : `mongodb://${MONGO_USERNAME}:${encodeURIComponent(MONGO_PASSWORD)}@${MONGO_HOST}/${MONGO_DATABASE}?authSource=admin`;
+
+// pipedrive
+const PIPEDRIVE_BASE_URL = process.env.PIPEDRIVE_BASE_URL;
+const PIPEDRIVE_API_KEY = process.env.PIPEDRIVE_API_KEY;
+const PIPEDRIVE_PAGINATION_LIMIT = process.env.PIPEDRIVE_PAGINATION_LIMIT;
+const PIPEDRIVE_CUSTOM_FILTER_ID = process.env.PIPEDRIVE_CUSTOM_FILTER_ID;
+
+// bling
+const BLING_API_KEY = process.env.BLING_API_KEY;
+const BLING_BASE_URL = process.env.BLING_BASE_URL;
+
+module.exports = {
+  DB_HOST,
+  PIPEDRIVE_BASE_URL,
+  PIPEDRIVE_API_KEY,
+  PIPEDRIVE_PAGINATION_LIMIT,
+  PIPEDRIVE_CUSTOM_FILTER_ID,
+  BLING_API_KEY,
+  BLING_BASE_URL
+};
