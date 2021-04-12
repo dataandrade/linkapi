@@ -1,29 +1,55 @@
+# Project Overview
+
+This project has the goal to integrate the platforms `Pipedrive -> Bling`. For this to happen, we have a few requirements to achieve:
+
+    1 - All deals inside Pipedrive with status |won| has to be bought to Bling ecosystem (as a |order|).
+    2 - All orders inside Bling has to be inserted in our database (`mongodb`), consolidate per day and total value of orders.
+    3 - We have to give a solution via an endpoint in our |API| to get this information tha has been store in our database for people to access.
+    4 - Items 1 and 2 had to be transparent for our end user (after initial config). Only step 3 is for "outside users" to be aware.
+
+# Tech
+
+- Node.js version 12.x
+- Express.js version 4.x
+- MongoDB
+- Docker 
+
+---
 
 
+# How to run this project
+### Requirements
 
+### 1. **Pipedrive:**
+We'll need to create a custom filter inside *Pipedrive* with the following configuration:
 
-## How to run this project
-#### Requirements
-1 - We'll need to create a custom filter inside pipedrive with the following configuration:
 
 ![Pipedrive filter configuration](pipedrive_creation_filter_deals_won_yesterday.jpg "Pipedrive filter configuration")
 
-- Now, with this custom filter created, we'll need to get the filter's id.
-    - Got to https://developers.pipedrive.com/docs/api/v1/#!/Filters/getFilters with your `API_KEY`, and run the endpoint selecting the type `deals`.
 
-you will see something like this:
+*Now, with this custom filter created, we'll need to get the filter's id to set in our app.*
+
+Go to https://developers.pipedrive.com/docs/api/v1/#!/Filters/getFilters with your `API_KEY`, and run the endpoint selecting the type `deals`.
+
+You will see something like this:
+
 ![Pipedrive filter](json_filter_deals_won_yesterday.jpg "Pipedrive filter")
 
-with your custom filter id at hand, you will need to set him at your `.env` config file.
+with your custom `filter_id` at hand, you will need to set him at your `.env` config file.
 
-Now, our CronJob for getting deals with status `won` will only bring `today -1day` (yesterday).
+**Now, our CronJob for getting deals with status `won` will only bring `Deals won yesterday`.**
 
+---
 
-### Create a `.env` file in your root directory:
+### 2. Config file:
+
+Environment configuration
+
+#### 2.1 Create a `.env` file in your root directory as such:
 
 ```
 DB_HOST=URL_MONGODB_OR_MONGODB_IP
-PORT=3000
+PORT=3002
 BLING_API_KEY=YOUR_BLING_API_KEY
 BLING_BASE_URL=https://bling.com.br/Api/v2
 PIPEDRIVE_BASE_URL=https://{{YOUR_COMPANY_URL}}-sandbox.pipedrive.com
@@ -32,18 +58,55 @@ PIPEDRIVE_PAGINATION_LIMIT=5
 PIPEDRIVE_CUSTOM_FILTER_ID=YOUR_CUSTOM_FILTER_ID
 ```
 
+
+***Or in case you are running inside a container:***
+
+
+### 3. Docker configuration:
+
+In case you want to run this project inside a container, you will need to configurate a few extra things:
+
+#### 3.1 Setting .env configuration inside Docker compose:
+
+![Docker compose env config](docker_compose_config.jpg "Docker compose env config")
+
+For default, this project has tests accounts configurated inside our `docker-compose.yml` file.
+
+---
+
+## 4. Finally, we can run our project in 2 ways:
+
+4.1 Without docker:
+`cd linkapi/ && npm install && npm run start:dev`
+
+or
+
+4.2 With docker:
+`docker-compose build --no-cache & docker-compose up --build --force-recreate`
+
+
+
+## ***After running, we can access the api via `http://localhost:3002`***
+
+
+
+---
+
+
+
+
 ## Calling endpoint with reports:
-[GET] `http://localhost:3000/v1/bling/orders/report`
+[GET] `http://localhost:3002/v1/bling/orders/report`
 
 this endpoint accepts the following filters:
 
-- date (`default: the last 10 items from collection. Note: the order filter will impact in this results`)
+- date (`default: the last 10 items from collection ordered by -date. Note: the order filter will impact in this results`)
 - offset (`default: 0`)
 - order (`default: -date`)
 
 Example of request:
 
-[GET] `http://localhost:3000/v1/bling/orders/report?offset=0&order=-date`
+[GET] `http://localhost:3002/v1/bling/orders/report?offset=0&order=-date`
 
 ---
 
@@ -66,60 +129,3 @@ Flow of deployment:
 
 - Updating the `main` branch:
 `dev` -> `main`
-
-
----
-
-# Teste Técnico - Back-end (Rodrigo Andrade)
-## General instructions
-Leia atentamente as instruções abaixo para a realização do teste proposto.
-
-Você terá em torno de 72h para realizar o teste proposto.
-
----
-
-
-
-### OBJETIVO
-
-Deverá construir uma API RESTful usando a tecnologia NodeJS.
-
-
----
-
-
-### REQUISITOS
-
-● Criar contas testes nas plataformas Pipedrive e Bling.
-
-● Criar uma integração entre as plataformas Pipedrive e Bling. (A integração deve buscar as oportunidades com status igual a ganho no Pipedrive, depois inseri-las como pedido no Bling).
-
-● Criar banco de dados mongo, existem serviços como MongoDB Atlas para criar de graça
-
-● Criar uma collection no banco de dados MongoDB agregando as oportunidades inseridas no Bling por dia e valor total.
-
-● Criar endpoint para trazer os dados consolidados da collection do MongoDB.
-
----
-
-## INSTRUÇÕES
-
-● Desenvolva e versione o projeto usando git
-
-● Utilize o GitHub para hospedar o código
-
-● Enviar o link do repositório para people@linkapi.com.br
-
----
-
-## O QUE SERÁ AVALIADO
-
-● Quantidade de requisitos realizados
-
-● Desacoplamento de código
-
-● Legibilidade
-
-● Boas práticas de desenvolvimento de API RESTful
-
-● Performance
