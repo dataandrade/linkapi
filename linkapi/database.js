@@ -1,13 +1,10 @@
-/* */
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-/* Seta variavel de ambiente com string do banco de dados */
-const AppConstants = require('./app/constants/app');
+const AppConstants = require("./app/constants/App");
 
-/* Caso possua URL configurada */
 if (AppConstants.DB_HOST) {
     mongoose
-        .connect(AppConstants.DB_HOST, {useNewUrlParser: true})
+        .connect(AppConstants.DB_HOST, { useNewUrlParser: true, useUnifiedTopology: true })
         .then(() => {
             console.log('[GOOD] - Connection established');
         })

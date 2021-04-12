@@ -1,0 +1,35 @@
+version: '3'
+services:
+  linkapi:
+    build: './linkapi'
+    container_name: linkapi_container
+    ports:
+      - "3002:3002"
+    depends_on: 
+      - db
+    environment:
+      - PORT=3002
+      - BLING_API_KEY=e4bbb1db79e034b79843f61adebd713aa43144ca9abf79bdcb3638356e2f65303f5f8d32
+      - BLING_BASE_URL=https://bling.com.br/Api/v2
+      - PIPEDRIVE_BASE_URL=https://testlinkapi-sandbox.pipedrive.com
+      - PIPEDRIVE_API_KEY=f183c575716e0329a5ba5aa75afbaf23077fc337
+      - PIPEDRIVE_PAGINATION_LIMIT=5
+      - PIPEDRIVE_CUSTOM_FILTER_ID=24
+      - MONGO_USERNAME=linkapiroot
+      - MONGO_PASSWORD=linkapirootpwd
+      - MONGO_DATABASE=linkapidb
+      - MONGO_HOST=mongodb
+
+  db:
+    image: mongo
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=linkapiroot
+      - MONGO_INITDB_ROOT_PASSWORD=linkapirootpwd
+      - MONGO_INITDB_DATABASE=linkapidb
+    volumes:
+      - ./init-mongodb.js:/docker-entrypoint-initdb.d/init-mongodb.js:ro
+    ports:
+      - "27017:27017"
+    restart: always
+    command: [--auth]
