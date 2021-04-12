@@ -12,10 +12,8 @@
     "mongodb"
   ],
   "scripts": {
-    "install:only:setup": "npm run install:only:prod & npm run install:only:dev",
-    "install:only:prod": "npm install --only=prod",
-    "install:only:dev": "npm install --only=dev",
-    "start": "node server.js"
+    "start": "node server.js",
+    "start:dev": "nodemon -r dotenv/config server.js"
   },
   "author": "Rodrigo Andrade <datarodrigoandrade@gmail.com>",
   "dependencies": {
@@ -34,9 +32,9 @@
     "dotenv": "8.2.0"
   },
   "_moduleAliases": {
-    "@constants": "./app/constants",
     "@models": "./app/models",
     "@services": "./app/services",
+    "@constants": "./app/constants",
     "@controllers": "./app/controllers"
   }
 }

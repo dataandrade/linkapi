@@ -31,7 +31,8 @@ We'll need to create a custom filter inside *Pipedrive* with the following confi
 
 Go to https://developers.pipedrive.com/docs/api/v1/#!/Filters/getFilters with your `API_KEY`, and run the endpoint selecting the type `deals`.
 
-you will see something like this:
+You will see something like this:
+
 ![Pipedrive filter](json_filter_deals_won_yesterday.jpg "Pipedrive filter")
 
 with your custom `filter_id` at hand, you will need to set him at your `.env` config file.
@@ -48,7 +49,7 @@ Environment configuration
 
 ```
 DB_HOST=URL_MONGODB_OR_MONGODB_IP
-PORT=3000
+PORT=3002
 BLING_API_KEY=YOUR_BLING_API_KEY
 BLING_BASE_URL=https://bling.com.br/Api/v2
 PIPEDRIVE_BASE_URL=https://{{YOUR_COMPANY_URL}}-sandbox.pipedrive.com
@@ -58,56 +59,44 @@ PIPEDRIVE_CUSTOM_FILTER_ID=YOUR_CUSTOM_FILTER_ID
 ```
 
 
-#### 2.2 Or in case you are running inside a container:
-
-COLOCAR AQUI CONFIG DO ARQUIVO DOCKERCOMPOSE
-
----
-
+***Or in case you are running inside a container:***
 
 
 ### 3. Docker configuration:
 
 In case you want to run this project inside a container, you will need to configurate a few extra things:
 
-#### 3.1 Setting .env configuration inside Docker-compose:
+#### 3.1 Setting .env configuration inside Docker compose:
 
-dfaisuhdfuiahfsd
+![Docker compose env config](docker_compose_config.jpg "Docker compose env config")
 
-To run the application local, type:<br>
+For default, this project has tests accounts configurated inside our `docker-compose.yml` file.
+
+---
+
+## 4. Finally, we can run our project in 2 ways:
+
+4.1 Without docker:
+`cd linkapi/ && npm install && npm run start:dev`
+
+or
+
+4.2 With docker:
 `docker-compose build --no-cache & docker-compose up --build --force-recreate`
 
-after running, you can acces the api via `http://localhost:3002`
+
+
+## ***After running, we can access the api via `http://localhost:3002`***
 
 
 
-<br>
-<br>
-<br><br><br><br><br><br><br><br><br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
 
 
 
 
 ## Calling endpoint with reports:
-[GET] `http://localhost:3000/v1/bling/orders/report`
+[GET] `http://localhost:3002/v1/bling/orders/report`
 
 this endpoint accepts the following filters:
 
@@ -117,7 +106,7 @@ this endpoint accepts the following filters:
 
 Example of request:
 
-[GET] `http://localhost:3000/v1/bling/orders/report?offset=0&order=-date`
+[GET] `http://localhost:3002/v1/bling/orders/report?offset=0&order=-date`
 
 ---
 
