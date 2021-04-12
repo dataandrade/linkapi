@@ -1,3 +1,5 @@
+const IS_RUNNING_CONTAINER = require("../constants/App");
+
 const moment = require("moment");
 require("moment/min/locales");
 
@@ -8,7 +10,7 @@ const DateUtils = {
         return format ? moment().format(format) : moment().format();
     },
     getYesterdayBrazilianFormat(format){
-        return moment(this.getTodayBrazilianFormat()).subtract('days', 1).format(format); 
+        return moment(this.getTodayBrazilianFormat()).subtract('days', IS_RUNNING_CONTAINER == "yes" ? 2 : 1).format(format); 
     }
 };
 
